@@ -1,6 +1,6 @@
 export const register = async(req, res) => {
     try {
-        const { name, email, password, gander } = req.body;
+        const { name, email, password, gander, profilePicture } = req.body;
     }catch (error) {
         res.status(500).send({ message: error.message });
     }
