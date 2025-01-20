@@ -56,22 +56,18 @@ export const register = async (req, res) => {
   try {
     const { fullName, email, username, password, confirmPassword, gander } = req.body;
 
-    // Check if passwords match
     if (password !== confirmPassword) {
       return res.status(400).json({ error: "Passwords don't match" });
     }
 
-    // Check if the username already exists
     const user = await User.findOne({ username });
     if (user) {
-      return res.status(400).json({ error: "Username already exists" });
+      return res.status(400).json({ error: "Username already exists 65" });
     }
 
-    // URLs for profile pictures based on gender
     const boyProfilePicture = `https://avatar.iran.liara.run/public/boy?username=${username}`;
     const girlProfilePicture = `https://avatar.iran.liara.run/public/girl?username=${username}`;
 
-    // Create a new user
     const newUser = new User({
       fullName,
       email,
@@ -81,10 +77,8 @@ export const register = async (req, res) => {
       profilePic: gander === "male" ? boyProfilePicture : girlProfilePicture,
     });
 
-    // Save the user to the database
     await newUser.save();
 
-    // Send success response
     res.status(201).json({
       _id: newUser._id,
       fullName: newUser.fullName,
@@ -94,7 +88,7 @@ export const register = async (req, res) => {
       profilePicture: newUser.profilePic,
     });
   } catch (error) {
-    console.error(`Error in register controller: ${error.message}`);
+    console.log(`Error in register controller: ${error.message}`);
     res.status(500).json({ error: "Internal server error" });
   }
 };
