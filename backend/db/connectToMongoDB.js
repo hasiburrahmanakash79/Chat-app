@@ -1,9 +1,11 @@
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const connectToMongoDB = async () => {
-
     try {
-        await mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.xvcivem.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`);
+        await mongoose.connect(process.env.MONGO_DB_URI);
         console.log('MongoDB connected');
     } catch (error) {
         console.error(`Error: ${error.message}`);
@@ -12,5 +14,3 @@ const connectToMongoDB = async () => {
 }
 
 export default connectToMongoDB;
-
-

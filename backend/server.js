@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send(`Server is running on port ${PORT}`);
 })
 
-// console.log("MongoDB URI:", process.env.MONGO_DB_URI);
+console.log("MongoDB URI:", process.env.MONGO_DB_URI);
 
 
 app.listen(PORT, () => {
